@@ -23,8 +23,8 @@ def get_weather():
     response = requests.get(url)
     data = json.loads(response.text)
     
-    print('hwllo')
     # Structured result using the JSON Response
+    # (This structure is based on the API Response in documentation, and needs to be updated)
     result = {
         "location": data.get("name"),
         "temperature": {
