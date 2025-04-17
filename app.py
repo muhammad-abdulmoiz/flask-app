@@ -1,18 +1,24 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, jsonify, request
+import requests
 
-# Create a Flask instance
 app = Flask(__name__)
 
-# Define a route
+API_KEY = '3ac9190d2137d4d9534aaf185cc21e4d'
+
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def home():
+    return "Welcome to Flask Weather App!"
 
-@app.route('/hello/<name>')
-def hello(name):
-    return render_template('home.html', name=name)
+@app.route('/weather')
+def get_weather():
+    lat = request.args.get('lat', default=44.34)
+    lon = request.args.get('lon', default=-10.99)
+    
+    url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}"
+    
+    response = requests.get(url)
+    data = response.json()
+    return jsonify(data)
 
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
