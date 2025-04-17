@@ -3,7 +3,7 @@ import requests, json
 
 app = Flask(__name__)
 
-API_KEY = '3ac9190d2137d4d9534aaf185cc21e4d'
+API_KEY = ''
 
 weather_history = []
 MAX_HISTORY = 5
