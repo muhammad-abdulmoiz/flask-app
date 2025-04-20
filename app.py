@@ -3,7 +3,7 @@ import requests, json
 
 app = Flask(__name__)
 
-API_KEY = '98e7df9824e17964be6d408a2968c789'
+API_KEY = ''
 
 weather_history = []
 MAX_HISTORY = 10
@@ -22,9 +22,7 @@ def get_weather():
     
     response = requests.get(url)
     data = json.loads(response.text)
-    
-    print("Response Data:", data)
-    
+     
     # Structured result using the JSON Response
     # (This structure is based on the API Response in documentation, and needs to be updated)
     result = {
