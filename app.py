@@ -24,7 +24,6 @@ def get_weather():
     data = json.loads(response.text)
      
     # Structured result using the JSON Response
-    # (This structure is based on the API Response in documentation, and needs to be updated)
     result = {
     "location": data.get("name"),
     "country": data["sys"].get("country"),
@@ -57,6 +56,11 @@ def get_weather():
 @app.route('/weather/history', methods=['GET'])
 def get_history():
     return jsonify(weather_history)
+
+@app.route('/weather/history/clear', methods=['POST'])
+def clear_history():
+    weather_history.clear()
+    return jsonify({"message": "Weather history cleared."})
 
 if __name__ == '__main__':
     app.run(debug=True)
